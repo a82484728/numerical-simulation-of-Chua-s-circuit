@@ -1,4 +1,4 @@
-# numerical-simulation-of-Chua-s-circuit
+# numerical simulation of Chua's circuit
 * Chua's circuit is a simple electric circuit demonstrating chaos phenomena. 
 
 * The file -"rewrite_chaos_numerical.py" is numerical simulation code.
