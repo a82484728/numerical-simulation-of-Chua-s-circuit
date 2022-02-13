@@ -4,14 +4,14 @@
 
 #------------------------------------------------------------------------------
 # import time
-# time_start = time.time() #開始計時，了解程式跑多久wwwwwwww
+# time_start = time.time() #開始計時，了解程式跑多久
 #------------------------------------------------------------------------------
 
 from scipy.integrate import odeint
 import numpy as np
 import matplotlib.pyplot as plt
 
-def pend(y, t, C1, C2, L, R, R1, R2, R3, R4, R5, R6, Esat):
+def pend(y, t, C1, C2, L, R, R1, R2, R3, R4, R5, R6, Bp):
 # y is a vecter[V1, V2, I]
 # V1對應論文中的v_C1
 # V2對應論文中的v_C2
@@ -22,8 +22,8 @@ def pend(y, t, C1, C2, L, R, R1, R2, R3, R4, R5, R6, Esat):
 # Differential equations 
 # Create dydt = (V1',V2',I'):
     dydt = [
-         ((V2-V1)/R-V1/R1-(-1/R3-1/R1)*(abs(V1+R3/(R2+R3)*Esat)-abs(V1-R3/(R2+R3)*Esat))/2
-         -V1/R4-(-1/R6-1/R4)*(abs(V1+R6/(R5+R6)*Esat)-abs(V1-R6/(R5+R6)*Esat))/2)/C1,
+         ((V2-V1)/R-V1/R1-(-1/R3-1/R1)*(abs(V1+R3/(R2+R3)*Bp)-abs(V1-R3/(R2+R3)*Bp))/2
+         -V1/R4-(-1/R6-1/R4)*(abs(V1+R6/(R5+R6)*Bp)-abs(V1-R6/(R5+R6)*Bp))/2)/C1,
 
          ((V1-V2)/R+I)/C2,
 
@@ -42,7 +42,7 @@ R3=2.2*10**3
 R4=22*10**3
 R5=22*10**3
 R6=3.3*10**3
-Esat=8.3
+Bp=8.3
 
 R=1800.0  #variable resistor
 
@@ -67,7 +67,7 @@ t = np.linspace(0,endtime,numpoints+1)
 
 
 # Call the ODE solver.
-sol = odeint(pend, y0, t, args=(C1, C2, L, R, R1, R2, R3, R4, R5, R6, Esat),atol=abserr, rtol=relerr)
+sol = odeint(pend, y0, t, args=(C1, C2, L, R, R1, R2, R3, R4, R5, R6, Bp),atol=abserr, rtol=relerr)
 #use args to pass the parameters to pend
 
 
