@@ -2,6 +2,10 @@
 #論文：ROBUST OP AMP REALIZATION OF CHUA'S CIRCUIT
 #使用1.9.12.13頁的資料來模擬
 
+#論文：利用混沌系統偵測植物覺知人體之反應
+#使用12頁的資料來模擬
+
+
 #------------------------------------------------------------------------------
 # import time
 # time_start = time.time() #開始計時，了解程式跑多久
@@ -19,7 +23,7 @@ def pend(y, t, C1, C2, L, R, R1, R2, R3, R4, R5, R6, Bp):
     V1, V2, I = y
 
 
-# Differential equations 
+# Differential equations (Michael Peter Kennedy(1994))
 # Create dydt = (V1',V2',I'):
     dydt = [
          ((V2-V1)/R-V1/R1-(-1/R3-1/R1)*(abs(V1+R3/(R2+R3)*Bp)-abs(V1-R3/(R2+R3)*Bp))/2
@@ -32,7 +36,7 @@ def pend(y, t, C1, C2, L, R, R1, R2, R3, R4, R5, R6, Bp):
 
 
 
-# Parameter values (使用論文第13頁的的元件)
+# Parameter values (使用楊,林(2017) 第12頁的的元件)
 C1=10*10**-9
 C2=100*10**-9
 L=18*10**-3
@@ -61,8 +65,6 @@ numpoints = 100000 #number of points
 
 
 # Create the time samples for the output of the ODE solver.
-# I use a large number of points, only because I want to make
-# a plot of the solution that looks nice.
 t = np.linspace(0,endtime,numpoints+1)
 
 
@@ -89,7 +91,9 @@ plt.ylabel(r'$V_2$ (V)')
 plt.grid(True)
 plt.savefig('rewrite_chaos.png', dpi=500)
 
+
 #------------------------------------------------------------------------------
+# 計時 (可以不用)
 # time_end = time.time()    #結束計時
 # time_c= time_end - time_start   #執行所花時間
 # print('time cost', time_c, 's')
