@@ -1,4 +1,6 @@
 # numerical simulation of Chua's circuit
+* keywords:蔡氏電路(Chua's circuit), 混沌理論(chaos theory)
+
 * Chua's circuit is a simple electric circuit demonstrating chaos phenomena. 
 
 * The file -"rewrite_chaos_numerical.py" is numerical simulation code.
